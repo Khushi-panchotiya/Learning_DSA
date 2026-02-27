@@ -8,6 +8,19 @@ class Solution:
       if nums[i] != nums[i - 1]:
         nums[k] = nums[i]  # Overwrite the next unique element
           k += 1
-  return k
+    return k
 
 # The solution I think of 
+class Solution(object):
+  def removeDuplicates(self, nums):
+    unique = {}
+    k = 0
+    for i,value in enumerate(nums):
+      if value not in unique:
+        nums[i], nums[k] = nums[k], nums[i]
+        k += 1
+        unique[value] = i
+      else:
+        continue
+    return k  
+  
