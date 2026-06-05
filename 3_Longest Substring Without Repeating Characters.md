@@ -1,3 +1,7 @@
+3. Longest Substring Without Repeating Characters
+
+* Pattern: Sliding Window + Hash Set
+
 # Intuition
 
 We need to find the longest substring that contains only unique characters.
@@ -31,6 +35,34 @@ When a duplicate character is encountered, we remove characters from the left un
 # Complexity Analysis
 
 * Time Complexity: **O(n)**
+
+* Code
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+
+        int left = 0;
+        unordered_set<char> window;
+        int ans = 0;
+
+        for (int right = 0; right < s.size(); right++) {
+
+            while (window.contains(s[right])) {
+
+                window.erase(s[left]);
+                left++;
+
+            }
+
+            window.insert(s[right]);
+
+            ans = max(ans, right - left + 1);
+
+        }
+
+        return ans;
+    }
+};
 
   * Each character is inserted into and removed from the set at most once.
 
