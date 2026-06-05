@@ -1,8 +1,8 @@
 # 3. Longest Substring Without Repeating Characters
 
-* Pattern: Sliding Window + Hash Set
+### Pattern: Sliding Window + Hash Set
 
-# Intuition
+## Intuition
 
 We need to find the longest substring that contains only unique characters.
 
@@ -15,7 +15,7 @@ Instead, we can use the **Sliding Window** technique. The idea is to maintain a 
 
 This guarantees that the window always represents a valid substring with no repeating characters.
 
-# Approach
+## Approach
 
 1. Use two pointers, `left` and `right`, to represent the current window.
 2. Use an `unordered_set` to store the characters currently inside the window.
@@ -26,17 +26,26 @@ This guarantees that the window always represents a valid substring with no repe
    * Update the answer using the current window length: `right - left + 1`.
 4. Return the maximum length found.
 
-# Why It Works
+## Why It Works
 
 At any point, the window contains only unique characters.
 
 When a duplicate character is encountered, we remove characters from the left until the window becomes valid again. Since each character is inserted and removed at most once, the algorithm processes the string efficiently in linear time.
 
-# Complexity Analysis
+## Complexity Analysis
 
-* Time Complexity: **O(n)**
+* **Time Complexity:** O(n)
 
-* Code
+  * Each character is inserted into and removed from the set at most once.
+
+* **Space Complexity:** O(min(n, m))
+
+  * Where `m` is the size of the character set.
+  * In the worst case, the set stores all unique characters in the current window.
+
+## Code
+
+```cpp
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
@@ -63,10 +72,4 @@ public:
         return ans;
     }
 };
-
-  * Each character is inserted into and removed from the set at most once.
-
-* Space Complexity: **O(min(n, m))**
-
-  * Where `m` is the size of the character set.
-  * In the worst case, the set stores all unique characters in the current window.
+```
